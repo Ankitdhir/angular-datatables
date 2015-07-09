@@ -48,11 +48,23 @@ var express = require('express');
 
 var app = express();
 // to support JSON-encoded bodies
+
+app.set('port', process.env.PORT || 3000);
+
+app.use(express.static(__dirname + '/')); 
+
+app.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + app.get('port'));
+});
+
 app.use(bodyParser.json());
 // to support URL-encoded bodies
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+
+
 
 // -----------
 // ROUTING
